@@ -1,6 +1,4 @@
-// 👈 lib/msStudentData.ts नाम की नई फ़ाइल बनाएँ
-
-// 1. MS छात्र का 'Type' (ढाँचा)
+ 
 export interface MsStudent {
   id: number;
   name: string;
@@ -11,7 +9,7 @@ export interface MsStudent {
   profileImagePath: string;
 }
 
-// 2. आपकी इमेज से लिया गया डमी डेटा
+ 
 const dummyMsStudents: MsStudent[] = [
   {
     id: 1,
@@ -119,7 +117,7 @@ const dummyMsStudents: MsStudent[] = [
     rollNo: "ms2304101015",
     researchArea: "application of remote photoplethysmography in health care",
     email: "ms2304101015@iiti.ac.in",
-    profileImagePath: "/msstudentpng/Vaidehi Agarwal.jpg", // 👈 अपनी इमेज का पाथ डालें
+    profileImagePath: "/msstudentpng/Vaidehi Agarwal.jpg",  
   },
   {
     id: 13,
@@ -128,7 +126,7 @@ const dummyMsStudents: MsStudent[] = [
     rollNo: "ms2404101001",
     researchArea: " ",
     email: "ms2404101001@iiti.ac.in",
-    profileImagePath: "/msstudentpng/2404101001_Debashish Utpal Biswas.jpg", // 👈 अपनी इमेज का पाथ डालें
+    profileImagePath: "/msstudentpng/2404101001_Debashish Utpal Biswas.jpg",  
   },
   {
     id: 14,
@@ -137,7 +135,7 @@ const dummyMsStudents: MsStudent[] = [
     rollNo: "ms2404101002",
     researchArea: " ",
     email: "ms2404101002@iiti.ac.in",
-    profileImagePath: "/msstudentpng/2404101002_Piyush.jpg", // 👈 अपनी इमेज का पाथ डालें
+    profileImagePath: "/msstudentpng/2404101002_Piyush.jpg",  
   },
   {
     id: 15,
@@ -146,7 +144,7 @@ const dummyMsStudents: MsStudent[] = [
     rollNo: "ms2404101003",
     researchArea: " ",
     email: "ms2404101003@iiti.ac.in",
-    profileImagePath: "/msstudentpng/2404101003_Jatin Sharma.jpg", // 👈 अपनी इमेज का पाथ डालें
+    profileImagePath: "/msstudentpng/2404101003_Jatin Sharma.jpg",  
   },
   {
     id: 16,
@@ -155,7 +153,7 @@ const dummyMsStudents: MsStudent[] = [
     rollNo: "ms2404101004",
     researchArea: " ",
     email: "ms2404101004@iiti.ac.in",
-    profileImagePath: "/msstudentpng/2404101004_Vislavath Bansilal.jpg", // 👈 अपनी इमेज का पाथ डालें
+    profileImagePath: "/msstudentpng/2404101004_Vislavath Bansilal.jpg",  
   },
   {
     id: 17,
@@ -164,7 +162,7 @@ const dummyMsStudents: MsStudent[] = [
     rollNo: "ms2404101005",
     researchArea: " ",
     email: "ms2404101005@iiti.ac.in",
-    profileImagePath: "/msstudentpng/2404101005_Saransh Vashistha.jpg", // 👈 अपनी इमेज का पाथ डालें
+    profileImagePath: "/msstudentpng/2404101005_Saransh Vashistha.jpg",  
   },
   {
     id: 18,
@@ -173,7 +171,7 @@ const dummyMsStudents: MsStudent[] = [
     rollNo: "ms2404101007",
     researchArea: " ",
     email: "ms2404101007@iiti.ac.in",
-    profileImagePath: "/msstudentpng/2404101007_Yashwardhan Manoj Raut.jpg", // 👈 अपनी इमेज का पाथ डालें
+    profileImagePath: "/msstudentpng/2404101007_Yashwardhan Manoj Raut.jpg",  
   },
   {
     id: 19,
@@ -182,8 +180,7 @@ const dummyMsStudents: MsStudent[] = [
     rollNo: "ms2404101008",
     researchArea: " ",
     email: "ms2404101008@iiti.ac.in",
-    profileImagePath: "/msstudentpng/2404101008_M Harsh Kumar.jpg", // 👈 अपनी इमेज का पाथ डालें
-  },
+    profileImagePath: "/msstudentpng/2404101008_M Harsh Kumar.jpg",  
   {
     id: 20,
     name: "Rohan Bera",
@@ -191,7 +188,7 @@ const dummyMsStudents: MsStudent[] = [
     rollNo: "ms2404101009",
     researchArea: " ",
     email: "ms2404101009@iiti.ac.in",
-    profileImagePath: "/msstudentpng/2404101009_Rohan Bera.jpg", // 👈 अपनी इमेज का पाथ डालें
+    profileImagePath: "/msstudentpng/2404101009_Rohan Bera.jpg", 
   },
   {
     id: 21,
@@ -200,7 +197,7 @@ const dummyMsStudents: MsStudent[] = [
     rollNo: "ms2404101010",
     researchArea: " ",
     email: "ms2404101010@iiti.ac.in",
-    profileImagePath: "/msstudentpng/2404101010_Mukul Kumar.jpg", // 👈 अपनी इमेज का पाथ डालें
+    profileImagePath: "/msstudentpng/2404101010_Mukul Kumar.jpg",  
   },
   {
     id: 22,
@@ -209,7 +206,7 @@ const dummyMsStudents: MsStudent[] = [
     rollNo: "ms2404101011",
     researchArea: " ",
     email: "ms2404101011@iiti.ac.in",
-    profileImagePath: "/msstudentpng/2404101011_Ayush Kumar Singh.jpg", // 👈 अपनी इमेज का पाथ डालें
+    profileImagePath: "/msstudentpng/2404101011_Ayush Kumar Singh.jpg",  
   },
   {
     id: 23,
@@ -218,7 +215,7 @@ const dummyMsStudents: MsStudent[] = [
     rollNo: "ms2404101012",
     researchArea: " ",
     email: "ms2404101012@iiti.ac.in",
-    profileImagePath: "/msstudentpng/2404101012_Anand Suralkar.jpg", // 👈 अपनी इमेज का पाथ डालें
+    profileImagePath: "/msstudentpng/2404101012_Anand Suralkar.jpg",  
   },
   {
     id: 24,
@@ -227,7 +224,7 @@ const dummyMsStudents: MsStudent[] = [
     rollNo: "ms2404101013",
     researchArea: " ",
     email: "ms2404101013@iiti.ac.in",
-    profileImagePath: "/msstudentpng/2404101013_Vanish Jain.jpg", // 👈 अपनी इमेज का पाथ डालें
+    profileImagePath: "/msstudentpng/2404101013_Vanish Jain.jpg", 
   },
   {
     id: 25,

@@ -1,12 +1,10 @@
-// lib/phdStudentData.ts
-
-// 1. PhdStudent 'Type' को अपडेट करें
+ 
 export interface PhdStudent {
     id: number;
     name: string;
     supervisor: string;
-    category: string;       // 👈 यह जोड़ें
-    rollNo: string;         // 👈 यह जोड़ें
+    category: string;        
+    rollNo: string;          
     researchArea: string;
     email: string;
     profileImagePath: string;

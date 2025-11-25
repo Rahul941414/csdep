@@ -3,14 +3,26 @@
 import React, { useState } from "react";
 import { allAlumniData } from "@/lib/alumniData";
 
+/** Types for alumni data */
+interface AlumniPerson {
+  id?: string;
+  rollno?: string;
+  name?: string;
+  imageUrl?: string;
+  img?: string;
+  image?: string;
+  specialization?: string;
+  supervisor?: string;
+  yearOfGraduation?: string | number;
+  profileLink?: string;
+}
+
 /** Normalize image path: add leading slash + encode spaces/brackets */
-function normalizeImgPath(raw?: string, fallback = "/alumini/default-avatar.jpg") {
+function normalizeImgPath(raw?: string | null, fallback = "/alumini/default-avatar.jpg"): string {
   if (!raw) return fallback;
 
-  // Ensure leading slash
   const withLeading = raw.startsWith("/") ? raw : `/${raw}`;
 
-  // Encode URI (fix spaces, parentheses, etc.)
   try {
     return encodeURI(withLeading);
   } catch {
@@ -19,23 +31,32 @@ function normalizeImgPath(raw?: string, fallback = "/alumini/default-avatar.jpg"
 }
 
 /** Client-side fallback image component */
-function ImageWithFallback({ src, alt, className, fallback }) {
-  const [currentSrc, setCurrentSrc] = useState(src || fallback);
+interface ImageWithFallbackProps {
+  src?: string | null;
+  alt?: string;
+  className?: string;
+  fallback?: string;
+}
+
+function ImageWithFallback({ src, alt = "", className, fallback = "/alumini/default-avatar.jpg" }: ImageWithFallbackProps) {
+  // explicitly type the state as string
+  const [currentSrc, setCurrentSrc] = useState<string>(src || fallback);
 
   return (
     <img
       src={currentSrc}
       alt={alt}
       className={className}
-      onError={(e) => {
-        if (currentSrc !== fallback) setCurrentSrc(fallback);
+      onError={() => {
+        if (fallback && currentSrc !== fallback) setCurrentSrc(fallback);
       }}
     />
   );
 }
 
-export default function GraduatedMTechPage() {
-  const alumni = allAlumniData.graduatedMTech || [];
+export default function GraduatedMTechPage(): JSX.Element {
+  // Ensure correct typing and fallback if property missing
+  const alumni: AlumniPerson[] = (allAlumniData?.graduatedMTech as AlumniPerson[]) || [];
   const FALLBACK = "/alumini/default-avatar.jpg";
 
   return (
@@ -55,7 +76,7 @@ export default function GraduatedMTechPage() {
           const keyValue =
             person.rollno ||
             person.id ||
-            `${person.name}-${index}`;
+            `${person.name ?? "alumni"}-${index}`;
 
           return (
             <div

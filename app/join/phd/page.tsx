@@ -1,89 +1,80 @@
-//  app/join/phd/page.tsx
+"use client";
 
-import React from 'react';
-import Link from 'next/link'; 
+import React from "react";
+import Link from "next/link";
 
 export default function ProspectivePhDPage() {
     return (
-        <div className="container mx-auto px-4 py-16 max-w-4xl">
+        <main className="w-full min-h-screen bg-gray-50">
+            <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-            {/* --- 1. Title Page --- */}
-            <h1 className="text-4xl font-bold text-blue-900 mb-8 text-center border-b-2 border-blue-200 pb-4">
-                PhD Program Admissions
-            </h1>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 
+          text-center pb-4 mb-12 border-b-4 border-blue-300">
+                    PhD Program Admissions
+                </h1>
 
-            {/* --- 2. Task--- */}
-            <div className="space-y-8 text-lg text-gray-800 leading-relaxed">
+                <div className="space-y-7 text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
 
-                {/* --- 3. Main information --- */}
-                <p>
-                    Department of Computer Science and Engineering, IIT Indore offers
-                    Doctor of Philosophy (PhD) program in almost all current areas of
-                    Computer Science and is looking for **highly motivated and dedicated
-                    research scholars** for its PhD program.
-                </p>
-                <p>
-                    It welcomes and accepts
-                    applications for admission to PhD program generally in **March/April for
-                    Autumn semester** and in **September/October for Spring semester**.
-                </p>
-                <p>
-                    In general,
-                    students selected for PhD program have to undergo course-work during
-                    first two semesters before actually starting their individual doctoral
-                    research work. During these two semesters, students get an opportunity
-                    to acquaint themselves with the research activities of faculty members
-                    and suitably select their individual research supervisor.
-                </p>
-
-                {/* --- 4. Areas of Research --- */}
-                <div>
-                    <h2 className="text-2xl font-semibold text-blue-800 mb-4">
-                        Areas of Research
-                    </h2>
                     <p>
-                        Faculty members of the department of Computer Science and Engineering
-                        are working in cutting-edge research areas.
-                        <Link href="/research/areas" className="text-blue-600 font-medium hover:underline ml-1">
-                            Complete list of areas... can be found here.
-                        </Link>
-                        <Link href="/people/faculty" className="text-blue-600 font-medium hover:underline ml-1">
-                            Information about faculty members... can be found here.
-                        </Link>
+                        The Department of Computer Science and Engineering, IIT Indore offers a
+                        Doctor of Philosophy (PhD) program in almost all major areas of Computer Science.
+                        The department invites <strong>highly motivated and dedicated research scholars</strong>
+                        to apply for this program.
                     </p>
-                </div>
 
-                {/* --- 5. Admission Procedure --- */}
-                <div>
-                    <h2 className="text-2xl font-semibold text-blue-800 mb-4">
-                        Admission Procedure
-                    </h2>
                     <p>
-                        Selection process for admission to PhD program in discipline of Computer
-                        Science and Engineering consists of a **written test followed by an
-                        interview**. Syllabus of written test loosely follows the latest syllabus
-                        of Graduate Aptitude Test in Engineering (GATE) for Computer Science and
-                        Information Technology. Final selections are made considering
-                        performance of candidates in both, the written test and the interview.
+                        Applications are usually invited in <strong>March/April for the Autumn semester</strong> and
+                        <strong> September/October for the Spring semester</strong>.
                     </p>
-                </div>
 
-                {/* --- 6. Applications --- */}
-                <div>
-                    <h2 className="text-2xl font-semibold text-blue-800 mb-4">
-                        Applications
-                    </h2>
                     <p>
-                        IIT Indore invites applications for admission to its Regular PhD Program
-                        in every quarter of the year.
-                        <Link href="#" className="text-blue-600 font-medium hover:underline ml-1">
-                            For more details, please refer here.
-                        </Link>
+                        Selected PhD scholars must complete coursework during the first two semesters.
+                        During this period, scholars get an opportunity to explore ongoing research within
+                        the department and choose a suitable supervisor aligned with their research interests.
                     </p>
+
+                    <div>
+                        <h2 className="text-3xl font-semibold text-blue-800 mb-4">
+                            Areas of Research
+                        </h2>
+                        <p>
+                            Faculty members of the Department of Computer Science and Engineering work in
+                            a variety of cutting-edge research areas.
+                            <Link href="/research/areas" className="text-blue-600 font-medium hover:underline ml-1">
+                                View full list of research areas.
+                            </Link>
+                            <Link href="/people/faculty" className="text-blue-600 font-medium hover:underline ml-1">
+                                View faculty profiles here.
+                            </Link>
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 className="text-3xl font-semibold text-blue-800 mb-4">
+                            Admission Procedure
+                        </h2>
+                        <p>
+                            The selection process consists of a <strong>written test</strong> followed by an
+                            <strong> interview</strong>. The written test syllabus broadly aligns with the GATE
+                            syllabus for Computer Science & Information Technology. Final selection is based on
+                            performance in both stages.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h2 className="text-3xl font-semibold text-blue-800 mb-4">
+                            Applications
+                        </h2>
+                        <p>
+                            IIT Indore invites applications for its PhD program multiple times a year.
+                            <Link href="#" className="text-blue-600 font-medium hover:underline ml-1">
+                                Click here for detailed instructions and announcements.
+                            </Link>
+                        </p>
+                    </div>
+
                 </div>
-
-            </div>
-
-        </div>
+            </section>
+        </main>
     );
 }

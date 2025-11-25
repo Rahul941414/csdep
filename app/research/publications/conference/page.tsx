@@ -1,8 +1,8 @@
-// फ़ाइल: app/research/publications/conference/page.tsx
+ 
 
 import React from 'react';
 
-// --- 1. आपका पूरा Conference डेटा ---
+ 
 const publicationsData = [
     "Anirban Sengupta,Aditya Anshul,Nabendu Bhui, \"Timer-driven HLS Trojan attack on Medical System Hardware\", Proceedings of 11th IEEE International Symposium on Smart Electronic Systems (IEEE – iSES, Accepted, Dec 2025",
     "Anirban Sengupta,Aditya Anshul,Nabendu Bhui, \"Embedding Steganography Digest using Shannon’s Decomposition for Hardware Security against False IP Ownership Attack \", Proceedings of 11th IEEE International Symposium on Smart Electronic Systems (IEEE – iSES), Accepted, Dec 2025",
@@ -184,16 +184,14 @@ const publicationsData = [
     "Anuradha Purohit, Narendra S. Chaudhari, and Aruna Tiwari, \"Construction of Classifier with Feature Selection based on Genetic Programming\", IEEE World Congress on Evolutionary Computation (Computational Intelligence), Centre de Convencions Internacional de Barcelona, Barcelona, Spain, proceedings pp. 1-5 (18-23 July, 2010) Proceedings pp. 01-05, 2010."
 ];
 
-
-// --- 2. पेज कंपोनेंट ---
+ 
 export default function ConferencePublicationsPage() {
     return (
         <div className="container mx-auto px-4 py-12">
             <h1 className="text-4xl font-bold text-blue-900 mb-12 text-center">
                 Conference Publications
             </h1>
-
-            {/* पब्लिकेशन की लिस्ट */}
+ 
             <div className="space-y-6">
                 {publicationsData.map((publication, index) => (
                     <div
@@ -201,11 +199,11 @@ export default function ConferencePublicationsPage() {
                         className="bg-white p-4 rounded-lg shadow-lg border border-gray-200"
                     >
                         <div className="flex items-start">
-                            {/* आपकी "count wise" गिनती */}
+                            
                             <span className="text-xl font-bold text-blue-800 mr-4">
                                 {index + 1}.
                             </span>
-                            {/* पब्लिकेशन का टेक्स्ट */}
+                         
                             <p className="text-gray-700 leading-relaxed flex-1">
                                 {publication}
                             </p>

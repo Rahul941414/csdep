@@ -10,22 +10,12 @@ type Program = { name: string; batches?: Batch[] };
 export default function Navbar() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [activeSubDropdown, setActiveSubDropdown] = useState<string | null>(null);
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
   const [openMobileSubDropdown, setOpenMobileSubDropdown] = useState<string | null>(null);
 
-  // NEW: selected program inside Alumni for desktop (controls which batches show)
   const [selectedAlumniProgram, setSelectedAlumniProgram] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleMobileDropdown = (itemName: string) => {
     if (openMobileDropdown === itemName) {
@@ -101,7 +91,6 @@ export default function Navbar() {
             { name: "2022 BTech", href: "/people/btech-students/2022" }
           ]
         },
-        // Alumni remains as a dropdown item, but we treat it as a "pure dropdown" (no direct link)
         {
           name: "Alumni",
           href: "#",
@@ -201,16 +190,19 @@ export default function Navbar() {
     { name: "IIT Indore", href: "https://www.iiti.ac.in/", icon: <ExternalLink size={14} /> }
   ];
 
+  const isAlumniActive = (itemName: string) => {
+    return openMobileSubDropdown === itemName || openMobileSubDropdown?.startsWith(`${itemName}:`);
+  };
+
   return (
     <>
-      {/* header (unchanged) */}
-      <div className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white relative overflow-hidden">
+      <div className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white relative overflow-hidden select-none">
         <div className="absolute inset-0 opacity-10">
           <div
             className="absolute inset-0"
             style={{
               backgroundImage: `radial-gradient(circle at 25px 25px, white 2%, transparent 0%),
-                                         radial-gradient(circle at 75px 75px, white 2%, transparent 0%)`,
+                                                radial-gradient(circle at 75px 75px, white 2%, transparent 0%)`,
               backgroundSize: "100px 100px"
             }}
           ></div>
@@ -223,10 +215,9 @@ export default function Navbar() {
                 href="https://www.iiti.ac.in/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Visit IIT Indore website"
                 className="flex-shrink-0"
               >
-                <div className="bg-white rounded-xl p-1.5 md:p-2 shadow-2xl border border-blue-300/20 hover:scale-105 transition-transform duration-300">
+                <div className="bg-white rounded-xl p-1.5 md:p-2 shadow-2xl border border-blue-300/20">
                   <img
                     src="/png/iitlogo.png"
                     alt="IIT Indore Logo"
@@ -265,13 +256,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* navbar (mostly unchanged, but important Link/route fixes inside dropdowns) */}
       <nav
-        className={`sticky top-0 z-50 transition-all duration-500 ${scrolled ? "bg-white/95 backdrop-blur-xl shadow-2xl border-b border-gray-200/50" : "bg-gradient-to-r from-blue-900/95 via-blue-800/95 to-blue-900/95 backdrop-blur-lg shadow-xl"
-          }`}
+        className="sticky top-0 z-50 transition-all duration-500 bg-gradient-to-r from-blue-900/95 via-blue-800/95 to-blue-900/95 backdrop-blur-lg shadow-xl"
       >
         <div className="w-full px-2 sm:px-4 lg:px-8 xl:px-12 2xl:px-20">
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center justify-between">
             <div className="flex items-center flex-1 justify-evenly">
               {navItems.map((item) => (
@@ -287,8 +275,7 @@ export default function Navbar() {
                 >
                   <a
                     href={item.href}
-                    className={`relative px-3 xl:px-4 2xl:px-5 py-4 xl:py-5 font-medium transition-all duration-300 flex items-center space-x-1 whitespace-nowrap ${scrolled ? "text-gray-700 hover:text-blue-600" : "text-white/90 hover:text-white"
-                      }`}
+                    className="relative px-3 xl:px-4 2xl:px-5 py-4 xl:py-5 font-medium transition-all duration-300 flex items-center space-x-1 whitespace-nowrap text-white/90 hover:text-white"
                     target={item.href?.startsWith("http") ? "_blank" : "_self"}
                     rel={item.href?.startsWith("http") ? "noopener noreferrer" : ""}
                     onClick={(e) => {
@@ -303,7 +290,6 @@ export default function Navbar() {
 
                   <div className={`absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 transform origin-left transition-transform duration-300 ${activeDropdown === item.name ? "scale-x-100" : "scale-x-0"}`}></div>
 
-                  {/* Main Dropdown Menu */}
                   {item.hasDropdown && item.dropdownItems && activeDropdown === item.name && (
                     <div className="absolute top-full left-0 mt-0 z-50 min-w-[220px]">
                       <div className="bg-white shadow-2xl rounded-b-xl border border-gray-200/50 py-2">
@@ -344,7 +330,6 @@ export default function Navbar() {
                               {dropdownItem.subDropdownItems && <ChevronRight size={16} />}
                             </a>
 
-                            {/* ALUMNI MEGA-MENU */}
                             {dropdownItem.isAlumni && dropdownItem.subDropdownItems && activeSubDropdown === dropdownItem.name && (
                               <div
                                 className="absolute left-full top-0 w-[680px] bg-white shadow-2xl rounded-r-xl border border-gray-200/50 z-50 max-h-[600px] overflow-hidden"
@@ -358,7 +343,6 @@ export default function Navbar() {
                               >
                                 <div className="p-4">
                                   <div className="grid grid-cols-4 gap-4">
-                                    {/* LEFT column: program names */}
                                     <div className="col-span-1 space-y-2">
                                       <h3 className="text-sm font-bold text-gray-700 uppercase tracking-wider pb-2">Programs</h3>
                                       {((dropdownItem.subDropdownItems as Program[]) || []).map((program) => (
@@ -367,10 +351,8 @@ export default function Navbar() {
                                           onMouseEnter={() => setSelectedAlumniProgram(program.name)}
                                           onFocus={() => setSelectedAlumniProgram(program.name)}
                                           onClick={() => {
-                                            // If program has a single batch/page, navigate directly to it (common for MTech/MS/PhD)
                                             if (program.batches && program.batches.length === 1 && program.batches[0].href) {
                                               router.push(program.batches[0].href);
-                                              // also close menus
                                               setActiveDropdown(null);
                                               setActiveSubDropdown(null);
                                               setSelectedAlumniProgram(null);
@@ -387,7 +369,6 @@ export default function Navbar() {
                                       ))}
                                     </div>
 
-                                    {/* RIGHT area: show batches for selected program */}
                                     <div className="col-span-3">
                                       <h3 className="text-sm font-bold text-gray-700 uppercase tracking-wider pb-2 border-b-2 border-blue-500">
                                         {selectedAlumniProgram ?? "Select a program"}
@@ -396,13 +377,11 @@ export default function Navbar() {
                                         {alumniPrograms
                                           .find((p) => p.name === selectedAlumniProgram)
                                           ?.batches?.map((batch) => (
-                                            // Use Link to ensure Next routing
                                             <Link
                                               key={batch.name}
                                               href={batch.href || "#"}
                                               className="block px-3 py-2 text-gray-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-600 transition-all duration-200 font-medium text-sm rounded-lg"
                                               onClick={() => {
-                                                // close menus on click
                                                 setActiveDropdown(null);
                                                 setActiveSubDropdown(null);
                                                 setSelectedAlumniProgram(null);
@@ -420,7 +399,6 @@ export default function Navbar() {
                               </div>
                             )}
 
-                            {/* Regular Nested Sub-Menu for non-alumni items */}
                             {!dropdownItem.isAlumni && dropdownItem.subDropdownItems && activeSubDropdown === dropdownItem.name && (
                               <div className="absolute left-full top-0 w-56 bg-white shadow-2xl rounded-r-xl border border-gray-200/50 z-50">
                                 <div className="py-2">
@@ -446,7 +424,7 @@ export default function Navbar() {
 
             </div>
 
-            <div className={`px-2 ${scrolled ? "text-gray-700" : "text-white"}`}>
+            <div className="px-2 text-white">
               <button className="p-2 rounded-lg hover:bg-white/10 transition-all duration-300" aria-label="Search">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -455,11 +433,10 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Mobile Navigation */}
           <div className="lg:hidden">
-            <div className={`flex items-center justify-between px-4 py-3 ${scrolled ? "bg-white" : "bg-transparent"}`}>
+            <div className="flex items-center justify-between px-4 py-3 bg-transparent">
               <div className="flex items-center space-x-2">
-                <a href="https://www.iiti.ac.in/" target="_blank" rel="noopener noreferrer" aria-label="Visit IIT Indore website">
+                <a href="https://www.iiti.ac.in/" target="_blank" rel="noopener noreferrer">
                   <div className="bg-white rounded-lg p-1">
                     <img
                       src="/png/iitlogo.png"
@@ -472,30 +449,29 @@ export default function Navbar() {
                     />
                   </div>
                 </a>
-                <span className={`font-bold text-base ${scrolled ? "text-gray-800" : "text-white"}`}>CSE IITI</span>
+                <span className="font-bold text-base text-white">CSE IITI</span>
               </div>
               <div className="flex items-center space-x-2">
-                <button className={`p-2 rounded-xl transition-all ${scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10"}`} aria-label="Search">
+                <button className="p-2 rounded-xl transition-all text-white hover:bg-white/10" aria-label="Search">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </button>
-                <button onClick={() => setIsOpen(!isOpen)} className={`p-2 rounded-xl transition-all ${scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10"}`} aria-label="Toggle menu">
+                <button onClick={() => setIsOpen(!isOpen)} className="p-2 rounded-xl transition-all text-white hover:bg-white/10" aria-label="Toggle menu">
                   {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
               </div>
             </div>
 
             {isOpen && (
-              <div className={`lg:hidden border-t ${scrolled ? "bg-white border-gray-200" : "bg-blue-900/95 backdrop-blur-lg border-blue-700"}`}>
+              <div className="lg:hidden border-t bg-blue-900/95 backdrop-blur-lg border-blue-700">
                 <div className="px-3 py-3 space-y-1 max-h-[70vh] overflow-y-auto">
                   {navItems.map((item) => (
                     <div key={item.name}>
                       {item.hasDropdown ? (
                         <button
                           onClick={() => handleMobileDropdown(item.name)}
-                          className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl transition-all font-medium ${scrolled ? "text-gray-700 hover:bg-blue-50" : "text-white hover:bg-white/10"
-                            }`}
+                          className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl transition-all font-medium text-white hover:bg-white/10"
                         >
                           <span className="font-semibold text-sm">{item.name}</span>
                           <ChevronDown size={16} className={`transition-transform duration-300 ${openMobileDropdown === item.name ? "rotate-180" : ""}`} />
@@ -504,50 +480,45 @@ export default function Navbar() {
                         <Link
                           href={item.href}
                           onClick={() => setIsOpen(false)}
-                          className={`block px-3 py-2.5 rounded-xl transition-all font-medium ${scrolled ? "text-gray-700 hover:bg-blue-50 hover:text-blue-600" : "text-white hover:bg-white/10"
-                            }`}
+                          className="block px-3 py-2.5 rounded-xl transition-all font-medium text-white hover:bg-white/10"
                         >
                           <span className="font-semibold text-sm">{item.name}</span>
                         </Link>
                       )}
 
                       {item.hasDropdown && openMobileDropdown === item.name && (
-                        <div className={`pl-3 mt-1 mb-1 space-y-1 border-l-2 ${scrolled ? "border-blue-200" : "border-blue-700"} ml-3`}>
+                        <div className="pl-3 mt-1 mb-1 space-y-1 border-l-2 border-blue-700 ml-3">
                           {item.dropdownItems.map((dropdownItem) => (
                             <div key={dropdownItem.name}>
                               {dropdownItem.isAlumni ? (
                                 <>
                                   <button
                                     onClick={() => handleMobileSubDropdown(dropdownItem.name)}
-                                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition-all text-sm font-medium ${scrolled ? "text-gray-600 hover:bg-blue-50" : "text-white/80 hover:bg-white/10"
-                                      }`}
+                                    className="w-full flex items-center justify-between px-3 py-2 rounded-lg transition-all text-sm font-medium text-white/80 hover:bg-white/10"
                                   >
                                     <span>{dropdownItem.name}</span>
-                                    <ChevronDown size={14} className={`transition-transform duration-300 ${openMobileSubDropdown === dropdownItem.name ? "rotate-180" : ""}`} />
+                                    <ChevronDown size={14} className={`transition-transform duration-300 ${isAlumniActive(dropdownItem.name) ? "rotate-180" : ""}`} />
                                   </button>
 
-                                  {openMobileSubDropdown === dropdownItem.name && dropdownItem.subDropdownItems && (
+                                  {isAlumniActive(dropdownItem.name) && dropdownItem.subDropdownItems && (
                                     <div className="pl-2 mt-1 space-y-2">
-                                      {/* mobile: accordion for programs */}
                                       {(dropdownItem.subDropdownItems as Program[]).map((program) => (
                                         <div key={program.name} className="space-y-1">
                                           <button
                                             onClick={() => {
-                                              // if a single batch/page exists, navigate directly
                                               if (program.batches && program.batches.length === 1 && program.batches[0].href) {
                                                 router.push(program.batches[0].href);
                                                 setIsOpen(false);
                                               } else {
                                                 const isOpen = openMobileSubDropdown === `${dropdownItem.name}:${program.name}`;
                                                 if (isOpen) {
-                                                  setOpenMobileSubDropdown(dropdownItem.name); // keep parent open
+                                                  setOpenMobileSubDropdown(dropdownItem.name);
                                                 } else {
                                                   setOpenMobileSubDropdown(`${dropdownItem.name}:${program.name}`);
                                                 }
                                               }
                                             }}
-                                            className={`w-full flex items-center justify-between px-3 py-1.5 text-xs font-bold uppercase tracking-wider ${scrolled ? "text-gray-700" : "text-white"
-                                              }`}
+                                            className="w-full flex items-center justify-between px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white"
                                           >
                                             <span>{program.name}</span>
                                             <ChevronDown size={12} className={`transition-transform duration-200 ${openMobileSubDropdown === `${dropdownItem.name}:${program.name}` ? "rotate-180" : ""}`} />
@@ -560,8 +531,7 @@ export default function Navbar() {
                                                   key={batch.name}
                                                   href={batch.href}
                                                   onClick={() => setIsOpen(false)}
-                                                  className={`block px-4 py-1.5 rounded-md text-xs transition-all ${scrolled ? "text-gray-600 hover:bg-blue-50" : "text-white/70 hover:bg-white/10"
-                                                    }`}
+                                                  className="block px-4 py-1.5 rounded-md text-xs transition-all text-white/70 hover:bg-white/10"
                                                 >
                                                   {batch.name}
                                                 </Link>
@@ -585,8 +555,7 @@ export default function Navbar() {
                                         if (dropdownItem.href) router.push(dropdownItem.href);
                                       }
                                     }}
-                                    className={`flex items-center justify-between px-3 py-2 rounded-lg transition-all text-sm font-medium ${scrolled ? "text-gray-600 hover:bg-blue-50" : "text-white/80 hover:bg-white/10"
-                                      }`}
+                                    className="flex items-center justify-between px-3 py-2 rounded-lg transition-all text-sm font-medium text-white/80 hover:bg-white/10"
                                   >
                                     <span>{dropdownItem.name}</span>
                                     {dropdownItem.subDropdownItems && <ChevronRight size={14} className="opacity-60" />}
@@ -599,8 +568,7 @@ export default function Navbar() {
                                           key={(subItem as any).name}
                                           href={(subItem as any).href}
                                           onClick={() => setIsOpen(false)}
-                                          className={`block px-3 py-2 rounded-md text-xs transition-all ${scrolled ? "text-gray-600 hover:bg-blue-50" : "text-white/80 hover:bg-white/10"
-                                            }`}
+                                          className="block px-3 py-2 rounded-md text-xs transition-all text-white/80 hover:bg-white/10"
                                         >
                                           {(subItem as any).name}
                                         </Link>
@@ -617,15 +585,14 @@ export default function Navbar() {
                   ))}
                 </div>
 
-                <div className={`px-3 py-3 border-t ${scrolled ? "border-gray-200" : "border-blue-700"}`}>
+                <div className="px-3 py-3 border-t border-blue-700">
                   <div className="grid grid-cols-1 gap-2">
                     {quickLinks.map((link) => (
                       <Link
                         key={link.name}
                         href={link.href}
                         onClick={() => setIsOpen(false)}
-                        className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all text-sm font-medium ${scrolled ? "text-gray-600 hover:bg-gray-100" : "text-white/80 hover:bg-white/10"
-                          }`}
+                        className="flex items-center space-x-2 px-3 py-2 rounded-lg transition-all text-sm font-medium text-white/80 hover:bg-white/10"
                       >
                         {link.icon}
                         <span>{link.name}</span>

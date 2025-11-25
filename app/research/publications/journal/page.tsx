@@ -1,9 +1,6 @@
-// फ़ाइल: app/research/publications/journal/page.tsx
 
 import React from 'react';
 
-// --- 1. आपका पूरा Journal डेटा ---
-// (मैंने आपके दिए गए टेक्स्ट को साफ़ करके एक ऐरे (array) में डाल दिया है)
 const publicationsData = [
     "Aditya Anshul, Anirban Sengupta, \"HLS Trojan Detection using Machine Learning Technique” IEEE Embedded Systems Letters (ESL)\", Accepted, 2025",
     "Anirban Sengupta, Nabendu Bhui, \"HLS Watermarking of IP Designs using Scheduling Driven Key-based Parallel Switching Framework Integrated with Multimodal Crypto Logic” IEEE Embedded Systems Letters (ESL)\", Accepted, 2025",
@@ -166,7 +163,6 @@ const publicationsData = [
 ];
 
 
-// --- 2. पेज कंपोनेंट ---
 export default function JournalPublicationsPage() {
     return (
         <div className="container mx-auto px-4 py-12">
@@ -174,7 +170,7 @@ export default function JournalPublicationsPage() {
                 Journal Publications
             </h1>
 
-            {/* पब्लिकेशन की लिस्ट */}
+
             <div className="space-y-6">
                 {publicationsData.map((publication, index) => (
                     <div
@@ -182,11 +178,10 @@ export default function JournalPublicationsPage() {
                         className="bg-white p-4 rounded-lg shadow-lg border border-gray-200"
                     >
                         <div className="flex items-start">
-                            {/* आपकी "count wise" गिनती */}
+
                             <span className="text-xl font-bold text-blue-800 mr-4">
                                 {index + 1}.
                             </span>
-                            {/* पब्लिकेशन का टेक्स्ट */}
                             <p className="text-gray-700 leading-relaxed flex-1">
                                 {publication}
                             </p>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-// --- 1. आपका पूरा प्रोजेक्ट डेटा ---
+
 const projectsData = [
     {
         title: "Cyber-Attack Detection and Impact Study in Energy Management System.",
@@ -16,7 +16,7 @@ const projectsData = [
         duration: "2023 - 2026",
         funding: "INR 2000000"
     },
-    // ... (बाकी सारा डेटा जैसा था वैसा ही है) ...
+
     {
         title: "Detection of Communities in Networks",
         pi: "Dr. Nagendra Kumar & Dr. Ranveer Singh",
@@ -153,7 +153,7 @@ const projectsData = [
 ];
 
 
-// --- 2. पेज कंपोनेंट ---
+
 export default function SponsoredProjectsPage() {
     return (
         <div className="container mx-auto px-4 py-12">
@@ -161,14 +161,14 @@ export default function SponsoredProjectsPage() {
                 Sponsored Research Projects
             </h1>
 
-            {/* प्रोजेक्ट्स की लिस्ट */}
+
             <div className="space-y-8">
                 {projectsData.map((project, index) => (
                     <div
                         key={index}
                         className="bg-white p-6 rounded-lg shadow-lg border border-gray-200"
                     >
-                        {/* नंबर और टाइटल */}
+
                         <div className="flex items-start">
                             <span className="text-2xl font-bold text-blue-800 mr-4">
                                 {index + 1}.
@@ -178,7 +178,7 @@ export default function SponsoredProjectsPage() {
                             </h2>
                         </div>
 
-                        {/* बाकी की जानकारी */}
+
                         <div className="pl-10 space-y-2">
                             <p className="text-gray-700">
                                 <strong className="font-medium text-gray-900">
@@ -186,7 +186,7 @@ export default function SponsoredProjectsPage() {
                                 </strong> {project.pi}
                             </p>
 
-                            {/* एजेंसी तभी दिखाएँ अगर वह खाली न हो */}
+
                             {project.agency && (
                                 <p className="text-gray-700">
                                     <strong className="font-medium text-gray-900">
@@ -201,7 +201,7 @@ export default function SponsoredProjectsPage() {
                                 </strong> {project.duration}
                             </p>
 
-                            {/* फंडिंग तभी दिखाएँ अगर वह खाली न हो */}
+
                             {project.funding && (
                                 <p className="text-gray-700">
                                     <strong className="font-medium text-gray-900">

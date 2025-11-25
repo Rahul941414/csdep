@@ -1,9 +1,9 @@
-// File: app/contact/page.tsx
+
 
 import React from 'react';
 import Image from 'next/image';
 
-// --- 1. Data Array for All "How to Reach" Options ---
+
 const reachOptions = [
     {
         title: "From Indore Railway Station / Bus Stand",
@@ -40,18 +40,17 @@ const reachOptions = [
     }
 ];
 
-// --- 2. Page Component ---
 export default function HowToReachPage() {
     return (
         <div className="bg-gray-50 py-16">
             <div className="container mx-auto px-4">
 
-                {/* --- Page Title --- */}
+
                 <h1 className="text-4xl font-bold text-blue-900 mb-12 text-center">
                     How To Reach?
                 </h1>
 
-                {/* --- Grid Layout (3 Columns on Desktop, 1 on Mobile) --- */}
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
                     {reachOptions.map((option, index) => (
@@ -59,14 +58,14 @@ export default function HowToReachPage() {
                             key={index}
                             className="bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden flex flex-col"
                         >
-                            {/* --- Card Header (Title) --- */}
+
                             <div className="bg-blue-900 text-white p-6">
                                 <h2 className="text-2xl font-semibold text-center">
                                     {option.title}
                                 </h2>
                             </div>
 
-                            {/* --- Card Content --- */}
+
                             <div className="p-6 space-y-4 flex-grow">
                                 <p className="text-gray-700">
                                     (Distance: {option.distance}; Travel time: {option.time})
@@ -83,7 +82,7 @@ export default function HowToReachPage() {
                                 </p>
                             </div>
 
-                            {/* --- Clickable Map Image --- */}
+
                             <div className="p-4 bg-gray-100 border-t border-gray-200">
                                 <a
                                     href={option.mapLink}

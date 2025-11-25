@@ -2,43 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Add animations */
-@keyframes float {
+/* Color & animation variables */
+:root {
+  --primary: #6366f1;
+  --primary-weak: #818cf8;
+  --track: #e5e7eb;
+  --bg: #f8fafc;
+  --float-d1: -10px;
+  --float-d2: -15px;
+  --float-d3: -8px;
+  --float-t1: 3s;
+  --float-t2: 4s;
+  --float-t3: 5s;
+  --pulse-t: 4s;
+  --scrollbar-w: 6px;
+}
 
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-10px);
+/* Dark mode fallbacks */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --track: #111827;
+    --bg: #0b1220;
+    --primary: #7c83ff;
+    --primary-weak: #9aa2ff;
   }
 }
 
-@keyframes float-delayed {
+/* Floating keyframe template (parameterised by translate distance via CSS var) */
+@keyframes float-vertical {
 
   0%,
   100% {
-    transform: translateY(0px);
+    transform: translateY(0);
   }
 
   50% {
-    transform: translateY(-15px);
+    transform: translateY(var(--float-distance));
   }
 }
 
-@keyframes float-slow {
+/* Horizontal micro float for text */
+@keyframes float-horizontal {
 
   0%,
   100% {
-    transform: translateY(0px);
+    transform: translateX(0);
   }
 
   50% {
-    transform: translateY(-8px);
+    transform: translateX(5px);
   }
 }
 
+/* Pulse opacity */
 @keyframes pulse-slow {
 
   0%,
@@ -47,79 +63,26 @@
   }
 
   50% {
-    opacity: 0.7;
+    opacity: .7;
   }
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-float-delayed {
-  animation: float-delayed 4s ease-in-out infinite;
-}
-
-.animate-float-slow {
-  animation: float-slow 5s ease-in-out infinite;
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 4s ease-in-out infinite;
-}
-
-/* Hide scrollbar but keep scroll functionality */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-  /* Chrome, Safari, Edge */
-}
-
-.no-scrollbar {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-/* Custom Scrollbar */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: #6366f1 #e5e7eb;
-  animation: slide-in 0.4s ease-out;
-}
-
-/* Webkit (Chrome, Edge, Safari) */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: #e5e7eb;
-  border-radius: 10px;
-}
-
-/* Animated thumb */
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #6366f1;
-  border-radius: 10px;
-  animation: scrollbar-glow 2s ease-in-out infinite;
-}
-
-/* Glow Animation */
+/* Scrollbar glow */
 @keyframes scrollbar-glow {
   0% {
-    background: #6366f1;
+    background: var(--primary);
   }
 
   50% {
-    background: #818cf8;
+    background: var(--primary-weak);
   }
 
   100% {
-    background: #6366f1;
+    background: var(--primary);
   }
 }
 
-/* Slide-in animation on load */
+/* Slide-in */
 @keyframes slide-in {
   from {
     opacity: 0;
@@ -132,35 +95,108 @@
   }
 }
 
-@keyframes floatText {
+/* Utility animation classes (use via Tailwind/HTML) */
+.animate-float {
+  --float-distance: var(--float-d1);
+  animation: float-vertical var(--float-t1) ease-in-out infinite;
+}
 
-  0%,
-  100% {
-    transform: translateX(0);
-  }
+.animate-float-delayed {
+  --float-distance: var(--float-d2);
+  animation: float-vertical var(--float-t2) ease-in-out infinite;
+}
 
-  50% {
-    transform: translateX(5px);
-  }
+.animate-float-slow {
+  --float-distance: var(--float-d3);
+  animation: float-vertical var(--float-t3) ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow var(--pulse-t) ease-in-out infinite;
 }
 
 .scroll-text {
-  animation: floatText 3s ease-in-out infinite;
-}
-
-/* Fade + Slide animation for scroll text */
-@keyframes scrollTextFade {
-  0% {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  animation: float-horizontal 3s ease-in-out infinite;
 }
 
 .scroll-anim {
-  animation: scrollTextFade 0.6s ease-out;
+  animation: slide-in .6s ease-out both;
+}
+
+/* Respect user's motion preference */
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-float,
+  .animate-float-delayed,
+  .animate-float-slow,
+  .animate-pulse-slow,
+  .scroll-text,
+  .scroll-anim {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Hide scrollbar but keep scrolling (cross-browser) */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE, Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom thin scrollbar with subtle glow effect */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--track);
+  animation: slide-in .4s ease-out;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: var(--scrollbar-w);
+  height: var(--scrollbar-w);
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--track);
+  border-radius: 999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 999px;
+  animation: scrollbar-glow 2s ease-in-out infinite;
+  border: 2px solid transparent;
+  /* keep thumb crisp on dark tracks */
+  background-clip: padding-box;
+}
+
+/* Small accessibility tweak: focus-visible outlines */
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary) 60%, white);
+  outline-offset: 2px;
+}
+
+/* Utility background for full-page sections */
+.full-page-bg {
+  background-color: var(--bg);
+  min-height: 100vh;
+}
+
+/* Keep animations smooth on devices but avoid heavy paint */
+* {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Slight entrance for cards / sections */
+.card-entrance {
+  transform-origin: top center;
+  will-change: transform, opacity;
+  animation: slide-in .45s ease-out both;
 }

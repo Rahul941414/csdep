@@ -1,8 +1,7 @@
-// फ़ाइल: app/research/publications/book-chapter/page.tsx
+
 
 import React from 'react';
 
-// --- 1. आपका पूरा Book Chapter डेटा ---
 const bookChaptersData = [
     "Anirban Sengupta, Aditya Anshul \" HLS Based Fingerprinting\", IET Book \"High-Level Synthesis based Methodologies for Hardware Security,Trust and IP Protection\", To appear, 2024",
     "Anirban Sengupta, Rahul Chaurasia \" Hardware Obfuscation - Algorithmic Transformation based Obfuscation for Secure Floorplan Driven High Level Synthesis\", IET Book \"High-Level Synthesis based Methodologies for Hardware Security, Trust and IP Protection\", To appear, 2024",
@@ -73,7 +72,7 @@ const bookChaptersData = [
     "Arpit Bhardwaj and Aruna Tiwari, \"A Novel Genetic Programming Based Classifier Design Using a New Constructive Crossover Operator with a Local Search Technique\", De-Shuang Huang, Vitoantonio Bevilacqua, Juan Carlos Figueroa, Prashan Premaratne, Springer-Verlag Berlin Heidelberg, 978-3-642-39479-9, 28-31 July2013."
 ];
 
-// --- 2. पेज कंपोनेंट ---
+
 export default function BookChaptersPage() {
     return (
         <div className="container mx-auto px-4 py-12">
@@ -81,11 +80,10 @@ export default function BookChaptersPage() {
                 Book Chapters
             </h1>
 
-            {/* बुक चैप्टर्स की लिस्ट */}
             <div className="space-y-6">
                 {bookChaptersData.map((chapter, index) => {
 
-                    // --- यहाँ लॉजिक जोड़ा गया है ---
+
                     const firstQuoteIndex = chapter.indexOf('"');
                     const secondQuoteIndex = chapter.indexOf('"', firstQuoteIndex + 1);
 
@@ -93,16 +91,15 @@ export default function BookChaptersPage() {
                     let title = '';
                     let source = '';
 
-                    // चेक करें कि दो कोटेशन मार्क्स ("") मिले या नहीं
                     if (firstQuoteIndex !== -1 && secondQuoteIndex !== -1) {
                         authors = chapter.substring(0, firstQuoteIndex);
                         title = chapter.substring(firstQuoteIndex + 1, secondQuoteIndex);
                         source = chapter.substring(secondQuoteIndex + 1);
                     } else {
-                        // अगर नहीं मिले, तो पूरी लाइन को authors में डाल दें
+
                         authors = chapter;
                     }
-                    // --- लॉजिक का अंत ---
+
 
                     return (
                         <div
@@ -110,17 +107,17 @@ export default function BookChaptersPage() {
                             className="bg-white p-4 rounded-lg shadow-lg border border-gray-200"
                         >
                             <div className="flex items-start">
-                                {/* आपकी "count wise" गिनती */}
+
                                 <span className="text-xl font-bold text-blue-800 mr-4">
                                     {index + 1}.
                                 </span>
 
-                                {/* --- यह हिस्सा अपडेट किया गया है --- */}
+
                                 <div className="text-gray-700 leading-relaxed flex-1">
                                     {/* 1. लेखक (Authors) */}
                                     <span className="text-gray-600" dangerouslySetInnerHTML={{ __html: authors }} />
 
-                                    {/* 2. टाइटल (Title) - हाइलाइटेड */}
+
                                     {title && (
                                         <span
                                             className="font-semibold text-blue-900"
@@ -128,12 +125,12 @@ export default function BookChaptersPage() {
                                         />
                                     )}
 
-                                    {/* 3. सोर्स (Source) */}
+
                                     {source && (
                                         <span className="text-gray-600" dangerouslySetInnerHTML={{ __html: source }} />
                                     )}
                                 </div>
-                                {/* --- अपडेट का अंत --- */}
+
 
                             </div>
                         </div>

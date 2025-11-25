@@ -1,8 +1,5 @@
-// फ़ाइल: app/teaching/courses/page.tsx
-
 import React from 'react';
 
-// --- 1. आपका पूरा Core Course डेटा ---
 const coreCourses = [
     { code: "CS 103", name: "Computer Programming", lpt: "2-0-0", credit: "2" },
     { code: "IC 151", name: "Computer Programming Lab", lpt: "0-0-3", credit: "1.5" },
@@ -31,7 +28,6 @@ const coreCourses = [
     { code: "CS 493N", name: "B Tech Project (BTP)", lpt: "0-0-32", credit: "16" }
 ];
 
-// --- 2. आपका पूरा Elective Course डेटा ---
 const electiveCourses = [
     { code: "CS 401 / CS 601", name: "Soft Computing", lpt: "2-0-2", credit: "3" },
     { code: "CS 404 / EE 304", name: "Digital Signal Processing", lpt: "3-1-0", credit: "4" },
@@ -54,8 +50,6 @@ const electiveCourses = [
     { code: "CS 701", name: "Selected Topics in Advanced Algorithms", lpt: "2-1-0", credit: "3" }
 ];
 
-// --- 3. एक दोबारा इस्तेमाल होने वाला टेबल कंपोनेंट ---
-// (यह एक ही पेज पर है, इसलिए इसे कहीं और import करने की ज़रूरत नहीं)
 function CourseTable({
     title,
     data,
@@ -64,13 +58,11 @@ function CourseTable({
     data: {
         code: string;
         name: string;
-        instructor?: string; // 👈 optional कर दिया
+        instructor?: string;
         lpt?: string;
         credit?: string;
     }[];
 }) {
-
-
     return (
         <div className="mb-16">
             <h2 className="text-3xl font-semibold text-blue-800 mb-6 border-b-2 border-blue-200 pb-2">
@@ -118,19 +110,16 @@ function CourseTable({
     );
 }
 
-// --- 4. मुख्य पेज कंपोनेंट ---
 export default function CoursesPage() {
     return (
-        <div className="container mx-auto px-4 py-12">
-            <h1 className="text-4xl font-bold text-blue-900 mb-12 text-center">
-                Courses Offered
-            </h1>
-
-            {/* पहली टेबल: Core Courses */}
-            <CourseTable title="Core Courses" data={coreCourses} />
-
-            {/* दूसरी टेबल: Elective Courses */}
-            <CourseTable title="Elective Courses" data={electiveCourses} />
+        <div className="min-h-screen w-full bg-gray-50">
+            <div className="container mx-auto px-4 py-12">
+                <h1 className="text-4xl font-bold text-blue-900 mb-12 text-center">
+                    Courses Offered
+                </h1>
+                <CourseTable title="Core Courses" data={coreCourses} />
+                <CourseTable title="Elective Courses" data={electiveCourses} />
+            </div>
         </div>
     );
 }

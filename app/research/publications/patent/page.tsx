@@ -1,8 +1,8 @@
-// फ़ाइल: app/research/publications/patent/page.tsx
+
 
 import React from 'react';
 
-// --- 1. आपका पूरा Patent डेटा ---
+
 const patentsData = [
     "Anirban Sengupta, \"Proteogenomic Biomarker based HLS Watermark for Hardware IP Security\", Patent Application No. 202521019673, 2025, Granted by Indian Patent Office (IPO), Govt. of India.",
     "Anirban Sengupta, \"A Hardware IP Protection against IP Piracy based on IP vendor’s Genomic Microsatellites µ-sat/Short-Tandem Repeat (STR) for Forensic Hardware Watermark\", Patent Application No. 202521019675, 2025, Granted by Indian Patent Office (IPO), Govt. of India.",
@@ -23,7 +23,6 @@ const patentsData = [
     "Anirban Sengupta (co-inventor: Reza Sedaghat), \" System and methodology for development of a system architecture using optimization parameters\", US Patent by United Sates Patent and Trademark Office (USPTO), Patent no. US 8,397,204, March 12, 2013, Granted by USPTO."
 ];
 
-// --- 2. पेज कंपोनेंट ---
 export default function PatentsPage() {
     return (
         <div className="container mx-auto px-4 py-12">
@@ -31,7 +30,7 @@ export default function PatentsPage() {
                 Patents
             </h1>
 
-            {/* पेटेंट की लिस्ट */}
+
             <div className="space-y-6">
                 {patentsData.map((patent, index) => (
                     <div
@@ -39,14 +38,14 @@ export default function PatentsPage() {
                         className="bg-white p-4 rounded-lg shadow-lg border border-gray-200"
                     >
                         <div className="flex items-start">
-                            {/* आपकी "count wise" गिनती */}
+
                             <span className="text-xl font-bold text-blue-800 mr-4">
                                 {index + 1}.
                             </span>
-                            {/* पेटेंट का टेक्स्ट */}
+
                             <p
                                 className="text-gray-700 leading-relaxed flex-1"
-                                // यह &nbsp; जैसे HTML कोड को रेंडर करने के लिए है
+
                                 dangerouslySetInnerHTML={{ __html: patent }}
                             />
                         </div>

@@ -1,8 +1,7 @@
-// फ़ाइल: app/research/publications/books/page.tsx
 
 import React from 'react';
 
-// --- 1. आपका पूरा Books डेटा ---
+
 const booksData = [
     "Anirban Sengupta, \"High-Level Synthesis based Methodologies for Hardware Security, Trust and IP Protection\", The Institute of Engineering and Technology (IET), July 2024",
     "Anirban Sengupta, \"Physical Biometrics for Hardware Security of DSP and Machine Learning Coprocessors\", The Institute of Engineering and Technology (IET), July 2023, Book DOI: 10.1049/PBCS080E",
@@ -12,7 +11,6 @@ const booksData = [
     "Anirban Sengupta, Sudeb Dasgupta, Virendra Singh, Rohit Sharma, SK Vishvakarma, \"VLSI Design and Test\", Springer Nature - Communications in Computer and Information Science, Vol. 1066, 2019, Book ISBN: 978-981-329-767-8"
 ];
 
-// --- 2. पेज कंपोनेंट ---
 export default function BooksPage() {
     return (
         <div className="container mx-auto px-4 py-12">
@@ -20,7 +18,6 @@ export default function BooksPage() {
                 Books
             </h1>
 
-            {/* किताबों की लिस्ट */}
             <div className="space-y-6">
                 {booksData.map((book, index) => (
                     <div
@@ -28,11 +25,11 @@ export default function BooksPage() {
                         className="bg-white p-4 rounded-lg shadow-lg border border-gray-200"
                     >
                         <div className="flex items-start">
-                            {/* आपकी "count wise" गिनती */}
+
                             <span className="text-xl font-bold text-blue-800 mr-4">
                                 {index + 1}.
                             </span>
-                            {/* किताब का टेक्स्ट */}
+
                             <p className="text-gray-700 leading-relaxed flex-1">
                                 {book}
                             </p>

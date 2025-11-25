@@ -1,16 +1,15 @@
-// फ़ाइल: app/research/sponsored-projects/gian/page.tsx
+ 
 
 import React from 'react';
-
-// --- 1. आपका पूरा GIAN डेटा ---
+ 
 const gianCoursesData = [
     {
         title: "Media Security and Forensics",
         offeredBy: "Prof. Gaurav Sharma, University of Rochester",
         coordinator: "Dr. Surya Prakash",
         schedule: "March 26 - April 06, 2018",
-        registerLink: "#", // यहाँ असली लिंक डालें
-        webpageLink: "#"  // यहाँ असली लिंक डालें
+        registerLink: "#",  
+        webpageLink: "#"  
     },
     {
         title: "Advanced Pattern Recognition Techniques for Biometrics",
@@ -77,23 +76,20 @@ const gianCoursesData = [
         webpageLink: "#"
     }
 ];
-
-// --- 2. पेज कंपोनेंट ---
+ 
 export default function GianCoursesPage() {
     return (
         <div className="container mx-auto px-4 py-12">
             <h1 className="text-4xl font-bold text-blue-900 mb-12 text-center">
                 GIAN Courses
             </h1>
-
-            {/* GIAN कोर्सेस की लिस्ट */}
+ 
             <div className="space-y-8">
                 {gianCoursesData.map((course, index) => (
                     <div
                         key={index}
                         className="bg-white p-6 rounded-lg shadow-lg border border-gray-200"
-                    >
-                        {/* नंबर और टाइटल */}
+                    > 
                         <div className="flex items-start">
                             <span className="text-2xl font-bold text-blue-800 mr-4">
                                 {index + 1}.
@@ -103,7 +99,7 @@ export default function GianCoursesPage() {
                             </h2>
                         </div>
 
-                        {/* बाकी की जानकारी */}
+                    
                         <div className="pl-10 space-y-2">
                             <p className="text-gray-700">
                                 <strong className="font-medium text-gray-900">
@@ -123,7 +119,7 @@ export default function GianCoursesPage() {
                                 </strong> {course.schedule}
                             </p>
 
-                            {/* लिंक्स */}
+                    
                             <div className="flex space-x-4 pt-2">
                                 <a
                                     href={course.registerLink}

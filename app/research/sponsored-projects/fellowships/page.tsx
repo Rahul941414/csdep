@@ -1,8 +1,8 @@
-// फ़ाइल: app/research/sponsored-projects/fellowships/page.tsx
+
 
 import React from 'react';
 
-// --- 1. आपका पूरा Fellowships डेटा ---
+
 const fellowshipsData = [
     {
         title: "Efficient Solution of Linear Systems arising in Non-Parametric Model Reduction of Second Order Systems.",
@@ -20,7 +20,6 @@ const fellowshipsData = [
     }
 ];
 
-// --- 2. पेज कंपोनेंट ---
 export default function FellowshipsPage() {
     return (
         <div className="container mx-auto px-4 py-12">
@@ -28,14 +27,14 @@ export default function FellowshipsPage() {
                 Fellowships
             </h1>
 
-            {/* Fellowships की लिस्ट */}
+
             <div className="space-y-8">
                 {fellowshipsData.map((project, index) => (
                     <div
                         key={index}
                         className="bg-white p-6 rounded-lg shadow-lg border border-gray-200"
                     >
-                        {/* नंबर और टाइटल */}
+
                         <div className="flex items-start">
                             <span className="text-2xl font-bold text-blue-800 mr-4">
                                 {index + 1}.
@@ -45,7 +44,7 @@ export default function FellowshipsPage() {
                             </h2>
                         </div>
 
-                        {/* बाकी की जानकारी */}
+
                         <div className="pl-10 space-y-2">
                             <p className="text-gray-700">
                                 <strong className="font-medium text-gray-900">
@@ -65,9 +64,7 @@ export default function FellowshipsPage() {
                                 <strong className="font-medium text-gray-900">
                                     Duration:
                                 </strong>
-                                {/* यह dangerouslySetInnerHTML का उपयोग करता है क्योंकि आपके डेटा में &nbsp; है।
-                  यह HTML को रेंडर करने की अनुमति देता है।
-                */}
+
                                 <span dangerouslySetInnerHTML={{ __html: project.duration }} />
                             </p>
 

@@ -1,37 +1,38 @@
-//  app/join/btech/page.tsx
+"use client";
 
-import React from 'react';
+import React from "react";
 
 export default function ProspectiveBTechPage() {
     return (
-        <div className="container mx-auto px-4 py-16 max-w-4xl">
+        <main className="w-full min-h-screen bg-gray-50">
+            <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-            {/* --- 1. Page Title --- */}
-            <h1 className="text-4xl font-bold text-blue-900 mb-8 text-center border-b-2 border-blue-200 pb-4">
-                Prospective B.Tech. Students
-            </h1>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 
+          text-center pb-4 mb-12 border-b-4 border-blue-300">
+                    Prospective B.Tech. Students
+                </h1>
 
-            {/* --- 2. Main Text --- */}
-            <div className="space-y-6 text-lg text-gray-800 leading-relaxed">
-                <p>
-                    The B.Tech. Program in Computer Science Engineering is a four-year
-                    program with selection through the **IIT Joint Entrance Examination**.
-                </p>
-                <p>
-                    Students are encouraged to work on research projects from their second
-                    year onwards in addition to course work and a semester long B.Tech.
-                    project offered in seventh semester. Projects undertaken are of
-                    inter–disciplinary nature and involve faculty members from across
-                    disciplines.
-                </p>
-                <p>
-                    Its strong and interactive curriculum and hands-on learning
-                    makes students capable of taking their career to the next level,
-                    whether it be in the professional engineering practice or in advanced
-                    study.
-                </p>
-            </div>
+                <div className="space-y-7 text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
+                    <p>
+                        The B.Tech. Program in Computer Science Engineering is a four-year program
+                        with selection through the <strong>IIT Joint Entrance Examination</strong>.
+                    </p>
 
-        </div>
+                    <p>
+                        Students are encouraged to work on research projects from their second year
+                        onwards, in addition to coursework and a semester-long B.Tech. project
+                        offered in the seventh semester. Many of these projects are interdisciplinary
+                        and involve collaboration with faculty members from various domains.
+                    </p>
+
+                    <p>
+                        Its strong, interactive curriculum and hands-on learning approach empower
+                        students to take their careers to the next level, whether in professional
+                        engineering roles or in advanced studies and research.
+                    </p>
+                </div>
+
+            </section>
+        </main>
     );
 }

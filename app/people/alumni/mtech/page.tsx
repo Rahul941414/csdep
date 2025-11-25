@@ -39,7 +39,6 @@ interface ImageWithFallbackProps {
 }
 
 function ImageWithFallback({ src, alt = "", className, fallback = "/alumini/default-avatar.jpg" }: ImageWithFallbackProps) {
-  // explicitly type the state as string
   const [currentSrc, setCurrentSrc] = useState<string>(src || fallback);
 
   return (
@@ -54,8 +53,7 @@ function ImageWithFallback({ src, alt = "", className, fallback = "/alumini/defa
   );
 }
 
-export default function GraduatedMTechPage(): JSX.Element {
-  // Ensure correct typing and fallback if property missing
+export default function GraduatedMTechPage() {
   const alumni: AlumniPerson[] = (allAlumniData?.graduatedMTech as AlumniPerson[]) || [];
   const FALLBACK = "/alumini/default-avatar.jpg";
 

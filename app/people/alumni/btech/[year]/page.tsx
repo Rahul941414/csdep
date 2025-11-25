@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { allAlumniData } from "@/lib/alumniData";
+import ClientImage from "@/components/ClientImage";
 
 type Props = {
   params: { year: string | undefined | null } | Promise<{ year: string | undefined | null }>;
@@ -11,7 +12,7 @@ type Props = {
  * Ensure image path starts with a leading slash and is safe for use in <img src>.
  * Returns placeholder when input is falsy or encoding fails.
  */
-function normalizeImgPath(raw?: string | null, placeholder = "/png/avatar-placeholder.png") {
+function normalizeImgPath(raw?: string | null, placeholder = "/png/avatar-placeholder.png"): string {
   if (!raw) return placeholder;
   const withLeading = raw.startsWith("/") ? raw : `/${raw}`;
   try {
@@ -70,18 +71,12 @@ export default async function BTechAlumniYearPage({ params }: Props) {
               >
                 <div className="flex flex-col items-center justify-center pt-6 pb-4 bg-white">
                   <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-md overflow-hidden">
-                    {/* Use plain <img> to avoid Next Image validation issues with dynamic/outside paths */}
-                    <img
+                    {/* Use ClientImage so event handlers stay on client side */}
+                    <ClientImage
                       src={imgSrc}
+                      fallback={placeholder}
                       alt={person.name ?? "Alumnus"}
                       className="object-cover w-full h-full"
-                      onError={(e) => {
-                        const target = e.currentTarget as HTMLImageElement;
-                        if (!target.dataset.fallback) {
-                          target.src = placeholder;
-                          target.dataset.fallback = "1";
-                        }
-                      }}
                     />
                   </div>
                 </div>

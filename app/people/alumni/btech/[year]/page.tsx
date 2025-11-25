@@ -2,7 +2,8 @@
 import React from "react";
 import Link from "next/link";
 import { allAlumniData } from "@/lib/alumniData";
-import ClientImage from "@/components/ClientImage";
+import ClientImage from "@/app/components/ClientImage";
+
 
 type Props = {
   params: { year: string | undefined | null } | Promise<{ year: string | undefined | null }>;
